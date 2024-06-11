@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { ProductEntity } from './entities/product.entity';
 import { privateDecrypt } from 'crypto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -31,10 +31,12 @@ export class ProductsService {
 
     async search(searchDto : SearchProductDto){
         const {query} = searchDto;
-        return this.productRepo.createQueryBuilder('product')
+        
+        const result = await this.productRepo.createQueryBuilder('product')
         .where('product.name ILIKE :query', {query : `%${query}%`})
         .getMany()
         
+        if(result.length === 0) throw new NotFoundException("no desired products were found!")
     
     }
     

@@ -37,9 +37,11 @@ let ProductsService = class ProductsService {
     }
     async search(searchDto) {
         const { query } = searchDto;
-        return this.productRepo.createQueryBuilder('product')
+        const result = await this.productRepo.createQueryBuilder('product')
             .where('product.name ILIKE :query', { query: `%${query}%` })
             .getMany();
+        if (result.length === 0)
+            throw new common_1.NotFoundException("no desired products were found!");
     }
     async getAll() {
         return await this.productRepo.find();

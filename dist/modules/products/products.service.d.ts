@@ -8,6 +8,6 @@ export declare class ProductsService {
     create(body: ProductDto): Promise<{
         message: string;
     }>;
-    search(searchDto: SearchProductDto): Promise<ProductEntity[]>;
+    search(searchDto: SearchProductDto): Promise<void>;
     getAll(): Promise<ProductEntity[]>;
 }
