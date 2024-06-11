@@ -42,6 +42,10 @@ let ProductsService = class ProductsService {
             .getMany();
         if (result.length === 0)
             throw new common_1.NotFoundException("no desired products were found!");
+        return {
+            message: "found !",
+            result
+        };
     }
     async getAll() {
         return await this.productRepo.find();

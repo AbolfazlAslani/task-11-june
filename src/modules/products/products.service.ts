@@ -31,13 +31,16 @@ export class ProductsService {
 
     async search(searchDto : SearchProductDto){
         const {query} = searchDto;
-        
         const result = await this.productRepo.createQueryBuilder('product')
         .where('product.name ILIKE :query', {query : `%${query}%`})
         .getMany()
         
         if(result.length === 0) throw new NotFoundException("no desired products were found!")
-    
+            
+        return {
+            message: "found !",
+            result 
+        }
     }
     
     async getAll(){

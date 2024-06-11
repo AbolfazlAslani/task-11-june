@@ -27,6 +27,7 @@ let ProductsController = class ProductsController {
         return await this.productsService.create(body);
     }
     async search(searchProductDto) {
+        console.log(searchProductDto);
         return await this.productsService.search(searchProductDto);
     }
     async getAll() {

@@ -7,6 +7,9 @@ export declare class ProductsController {
     create(body: ProductDto): Promise<{
         message: string;
     }>;
-    search(searchProductDto: SearchProductDto): Promise<void>;
+    search(searchProductDto: SearchProductDto): Promise<{
+        message: string;
+        result: import("./entities/product.entity").ProductEntity[];
+    }>;
     getAll(): Promise<import("./entities/product.entity").ProductEntity[]>;
 }

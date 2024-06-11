@@ -46,7 +46,7 @@ export class ProductsController {
     },
   })
   async search(@Body() searchProductDto: SearchProductDto){
-    
+      console.log(searchProductDto);
     return await this.productsService.search(searchProductDto)
   }
   
