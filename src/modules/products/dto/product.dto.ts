@@ -9,7 +9,7 @@ export class ProductDto{
     price: number;
     
     @IsNumber()
-    count : number;
+    quantity : number;
     
     
     

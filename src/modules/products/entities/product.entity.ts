@@ -10,7 +10,7 @@ export class ProductEntity extends BaseEntity{
     price: number;
     
     @Column()
-    count: number;
+    quantity: number;
     
     @CreateDateColumn()
     createdAt : Date;

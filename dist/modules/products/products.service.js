@@ -21,7 +21,26 @@ let ProductsService = class ProductsService {
     constructor(productRepo) {
         this.productRepo = productRepo;
     }
-    create() { }
+    async create(body) {
+        const { quantity, name, price } = body;
+        const result = this.productRepo.create({
+            quantity,
+            name,
+            price
+        });
+        if (!result)
+            throw new common_1.InternalServerErrorException();
+        await this.productRepo.save(result);
+        return {
+            message: "Product added successfuly!"
+        };
+    }
+    async search(searchDto) {
+        const { query } = searchDto;
+        return this.productRepo.createQueryBuilder('product')
+            .where('product.name ILIKE :query', { query: `%${query}%` })
+            .getMany();
+    }
 };
 exports.ProductsService = ProductsService;
 exports.ProductsService = ProductsService = __decorate([

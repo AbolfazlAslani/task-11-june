@@ -9,21 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProductDto = void 0;
+exports.SearchProductDto = void 0;
 const class_validator_1 = require("class-validator");
-class ProductDto {
+class SearchProductDto {
 }
-exports.ProductDto = ProductDto;
+exports.SearchProductDto = SearchProductDto;
 __decorate([
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], ProductDto.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], ProductDto.prototype, "price", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], ProductDto.prototype, "quantity", void 0);
-//# sourceMappingURL=product.dto.js.map
+], SearchProductDto.prototype, "query", void 0);
+//# sourceMappingURL=searchProduct.dto.js.map
