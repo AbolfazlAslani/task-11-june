@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseInterceptors } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductDto } from './dto/product.dto';
 import { SearchProductDto } from './dto/searchProduct.dto';
@@ -26,7 +26,6 @@ export class ProductsController {
       },
     },
   })
-  @UseInterceptors(FileInterceptor(''))
   async create(@Body() body : ProductDto){
     console.log(body);
     return  await this.productsService.create(body)
@@ -46,9 +45,13 @@ export class ProductsController {
       },
     },
   })
-  @UseInterceptors(FileInterceptor(''))
   async search(@Body() searchProductDto: SearchProductDto){
     
     return await this.productsService.search(searchProductDto)
+  }
+  
+  @Get("getAll")
+  async getAll(){
+    return await this.productsService.getAll()
   }
 }

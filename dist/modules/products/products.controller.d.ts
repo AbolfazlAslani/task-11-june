@@ -8,4 +8,5 @@ export declare class ProductsController {
         message: string;
     }>;
     search(searchProductDto: SearchProductDto): Promise<import("./entities/product.entity").ProductEntity[]>;
+    getAll(): Promise<import("./entities/product.entity").ProductEntity[]>;
 }

@@ -18,7 +18,6 @@ const products_service_1 = require("./products.service");
 const product_dto_1 = require("./dto/product.dto");
 const searchProduct_dto_1 = require("./dto/searchProduct.dto");
 const swagger_1 = require("@nestjs/swagger");
-const platform_express_1 = require("@nestjs/platform-express");
 let ProductsController = class ProductsController {
     constructor(productsService) {
         this.productsService = productsService;
@@ -29,6 +28,9 @@ let ProductsController = class ProductsController {
     }
     async search(searchProductDto) {
         return await this.productsService.search(searchProductDto);
+    }
+    async getAll() {
+        return await this.productsService.getAll();
     }
 };
 exports.ProductsController = ProductsController;
@@ -49,7 +51,6 @@ __decorate([
             },
         },
     }),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('')),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [product_dto_1.ProductDto]),
@@ -70,12 +71,17 @@ __decorate([
             },
         },
     }),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('')),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [searchProduct_dto_1.SearchProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductsController.prototype, "search", null);
+__decorate([
+    (0, common_1.Get)("getAll"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ProductsController.prototype, "getAll", null);
 exports.ProductsController = ProductsController = __decorate([
     (0, common_1.Controller)('products'),
     __metadata("design:paramtypes", [products_service_1.ProductsService])

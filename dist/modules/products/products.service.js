@@ -41,6 +41,9 @@ let ProductsService = class ProductsService {
             .where('product.name ILIKE :query', { query: `%${query}%` })
             .getMany();
     }
+    async getAll() {
+        return await this.productRepo.find();
+    }
 };
 exports.ProductsService = ProductsService;
 exports.ProductsService = ProductsService = __decorate([

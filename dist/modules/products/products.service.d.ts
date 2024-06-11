@@ -9,4 +9,5 @@ export declare class ProductsService {
         message: string;
     }>;
     search(searchDto: SearchProductDto): Promise<ProductEntity[]>;
+    getAll(): Promise<ProductEntity[]>;
 }

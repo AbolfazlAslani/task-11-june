@@ -37,4 +37,8 @@ export class ProductsService {
         
     
     }
+    
+    async getAll(){
+        return await this.productRepo.find()
+    }
 }
