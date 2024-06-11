@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SearchProductDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class SearchProductDto {
 }
 exports.SearchProductDto = SearchProductDto;
 __decorate([
+    (0, swagger_1.ApiProperty)({ type: String, description: 'The search query' }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)

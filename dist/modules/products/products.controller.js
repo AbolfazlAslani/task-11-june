@@ -17,11 +17,14 @@ const common_1 = require("@nestjs/common");
 const products_service_1 = require("./products.service");
 const product_dto_1 = require("./dto/product.dto");
 const searchProduct_dto_1 = require("./dto/searchProduct.dto");
+const swagger_1 = require("@nestjs/swagger");
+const platform_express_1 = require("@nestjs/platform-express");
 let ProductsController = class ProductsController {
     constructor(productsService) {
         this.productsService = productsService;
     }
     async create(body) {
+        console.log(body);
         return await this.productsService.create(body);
     }
     async search(searchProductDto) {
@@ -31,6 +34,22 @@ let ProductsController = class ProductsController {
 exports.ProductsController = ProductsController;
 __decorate([
     (0, common_1.Post)("create"),
+    (0, swagger_1.ApiConsumes)('application/json'),
+    (0, swagger_1.ApiBody)({
+        type: product_dto_1.ProductDto,
+        examples: {
+            example1: {
+                summary: 'Create Product Example',
+                description: 'A sample request to create a product',
+                value: {
+                    name: 'Sample Product',
+                    price: 100,
+                    quantity: 10,
+                },
+            },
+        },
+    }),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('')),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [product_dto_1.ProductDto]),
@@ -38,6 +57,20 @@ __decorate([
 ], ProductsController.prototype, "create", null);
 __decorate([
     (0, common_1.Post)("search"),
+    (0, swagger_1.ApiConsumes)('application/json'),
+    (0, swagger_1.ApiBody)({
+        type: searchProduct_dto_1.SearchProductDto,
+        examples: {
+            example1: {
+                summary: 'Search Product Example',
+                description: 'A sample request to search for a product',
+                value: {
+                    query: 'Sample Query',
+                },
+            },
+        },
+    }),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('')),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [searchProduct_dto_1.SearchProductDto]),
